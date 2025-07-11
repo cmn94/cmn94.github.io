@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carlos Moreno - Procurement & Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #fff;
+    color: #222;
+    margin: 0; padding: 2rem;
+  }
+  header {
+    border-bottom: 2px solid #6589bf;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+  h1 {
+    color: #6589bf;
+    margin: 0;
+  }
+  nav {
+    margin-top: 0.5rem;
+  }
+  nav button {
+    background: none;
+    border: 2px solid #6589bf;
+    color: #6589bf;
+    padding: 0.3rem 0.8rem;
+    margin-right: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  nav button.active {
+    background: #6589bf;
+    color: white;
+  }
+  section {
+    max-width: 600px;
+  }
+  a {
+    color: #6589bf;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  footer {
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Carlos Moreno</h1>
+  <nav>
+    <button id="btnEN" class="active">English</button>
+    <button id="btnES">Español</button>
+  </nav>
+</header>
+
+<section>
+  <article id="contentEN">
+    <p>Hello! I’m Carlos Moreno, specialized in Procurement & Strategy.</p>
+    <ul>
+      <li><a href="#" target="_blank">📄 CV (English)</a></li>
+      <li><a href="#" target="_blank">💼 LinkedIn</a></li>
+      <li><a href="mailto:info@nombreapellido.eu">✉️ info@nombreapellido.eu</a></li>
+      <li>📞 +1 442 CARLOSM</li>
+    </ul>
+  </article>
+
+  <article id="contentES" style="display:none;">
+    <p>¡Hola! Soy Carlos Moreno, especializado en Compras y Estrategia.</p>
+    <ul>
+      <li><a href="#" target="_blank">📄 CV (Español)</a></li>
+      <li><a href="#" target="_blank">💼 LinkedIn</a></li>
+      <li><a href="mailto:info@nombreapellido.eu">✉️ info@nombreapellido.eu</a></li>
+      <li>📞 +1 442 CARLOSM</li>
+    </ul>
+  </article>
+</section>
+
+<footer>
+  &copy; 2025 Carlos Moreno
+</footer>
+
+<script>
+  const btnEN = document.getElementById('btnEN');
+  const btnES = document.getElementById('btnES');
+  const contentEN = document.getElementById('contentEN');
+  const contentES = document.getElementById('contentES');
+
+  btnEN.addEventListener('click', () => {
+    contentEN.style.display = 'block';
+    contentES.style.display = 'none';
+    btnEN.classList.add('active');
+    btnES.classList.remove('active');
+  });
+
+  btnES.addEventListener('click', () => {
+    contentEN.style.display = 'none';
+    contentES.style.display = 'block';
+    btnEN.classList.remove('active');
+    btnES.classList.add('active');
+  });
+</script>
+
+</body>
+</html>
