@@ -2,72 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carlos Moreno - CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet" />
   <style>
     :root {
       --main-color: #6589bf;
       --font: 'Barlow', sans-serif;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: var(--font);
       margin: 0;
-      padding: 2rem;
+      padding: 2rem 0;
       background-color: #fff;
       color: #333;
     }
-    header, nav, section, footer {
+    .container {
       max-width: 960px;
-      margin: auto;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--main-color);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
     }
     header h1 {
+      margin: 0;
       color: var(--main-color);
+    }
+    header p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .photo-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--main-color);
+    }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     nav {
-      margin: 1rem 0;
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
-    nav button {
-      background: none;
-      border: 2px solid var(--main-color);
-      padding: 0.5rem 1rem;
-      margin-right: 1rem;
-      font-weight: bold;
+    nav a {
+      text-decoration: none;
       color: var(--main-color);
-      border-radius: 5px;
-      cursor: pointer;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
-    nav button.active {
-      background-color: var(--main-color);
-      color: white;
+    nav a:hover {
+      color: #3d5a85;
     }
     section {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
-    .box-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .box {
-      flex: 1 1 calc(50% - 1rem);
-      border: 2px solid var(--main-color);
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
-    }
-    .job-card, .project-card {
+    .card {
       display: flex;
       align-items: flex-start;
-      border-left: 5px solid var(--main-color);
+      gap: 1rem;
       padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--main-color);
       border: 1px solid #ccc;
       border-radius: 8px;
-      margin-bottom: 1rem;
-      gap: 1rem;
+      background: #fafafa;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.05);
     }
-    .job-card img {
+    .card img {
       height: 40px;
+      flex-shrink: 0;
+    }
+    .card div {
+      flex: 1;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.05rem;
+      margin-bottom: 0.75rem;
+    }
+    .contact-item img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+    .contact-item a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: 600;
+    }
+    .contact-item a:hover {
+      text-decoration: underline;
     }
     .skills span {
       display: inline-block;
@@ -88,84 +131,196 @@
 </head>
 <body>
 
-<header>
-  <h1>Carlos Moreno</h1>
+<div class="container">
+
+  <header>
+    <div>
+      <h1>Carlos Moreno</h1>
+      <p>Procurement · IT · Strategy</p>
+    </div>
+    <div class="photo-box">
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQESrbCHzSbmog/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1692977079537?e=1757548800&v=beta&t=7rYDx6Z6GUEQf4VnZh8UutZkkEKL3tYt4Z7NFLkSPF4" alt="Carlos Moreno" />
+    </div>
+  </header>
+
   <nav>
-    <button id="btnEN" class="active">English</button>
-    <button id="btnES">Español</button>
+    <a href="#contactEN">Contact</a>
+    <a href="#workEN">Work</a>
+    <a href="#eduEN">Education</a>
+    <a href="#skillsEN">Skills</a>
+    <a href="#projectsEN">Projects</a>
   </nav>
-</header>
 
-<section id="contactEN">
-  <h2>Contact</h2>
-  <ul>
-    <li>Email: <a href="mailto:info@nombreapellido.eu">info@nombreapellido.eu</a></li>
-    <li>Phone: +1 442 CARLOSM</li>
-    <li><a href="#" target="_blank">LinkedIn</a></li>
-    <li><a href="#" target="_blank">CV PDF</a></li>
-    <li><a href="https://meet.google.com" target="_blank">📅 Meet Me</a></li>
-  </ul>
-</section>
+  <section id="contactEN">
+    <h2>Contact</h2>
 
-<section id="workEN">
-  <h2>Work Experience</h2>
-  <div class="job-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Logo_Cepsa.svg" alt="Cepsa">
-    <div><strong>Cepsa</strong><br>IT Procurement Specialist<br><small>Sep 2023 – Jan 2025</small></div>
-  </div>
-  <div class="job-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Indra_logo.svg" alt="Indra">
-    <div><strong>Indra</strong><br>Procurement Analyst<br><small>Apr 2021 – Aug 2023</small></div>
-  </div>
-</section>
+    <div class="card">
 
-<section id="eduEN">
-  <h2>Education & Certifications</h2>
-  <div class="box-container">
-    <div class="box"><strong>BABA</strong><br>University of Maine at Presque Isle</div>
-    <div class="box"><strong>FP</strong><br>Comercio Internacional</div>
-    <div class="box"><strong>German Philology</strong><br>UCM (incomplete)</div>
-    <div class="box"><strong>NASPO</strong><br>Foundations of Procurement</div>
-  </div>
-</section>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+        <a href="mailto:carlos@cyberservices.com">carlos@cyberservices.com</a>
+      </div>
 
-<section id="skillsEN">
-  <h2>IT Skills</h2>
-  <div class="skills">
-    <span>Python</span><span>VBA</span><span>SAP</span><span>Oracle</span><span>Excel</span>
-    <span>Power BI</span><span>SQL</span><span>Notion</span><span>Zapier</span><span>GitHub</span><span>ChatGPT</span>
-  </div>
-</section>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/197/197484.png" alt="US Flag" />
+        <a href="tel:+1442123456">(442) CARLOSM</a></span>
+      </div>
 
-<section id="projectsEN">
-  <h2>Projects</h2>
-  <div class="project-card"><strong>Personal Website</strong><br>CV site with custom domain & GitHub Pages</div>
-  <div class="project-card"><strong>RFP Code Generator</strong><br>Automated code generation for public procurement</div>
-</section>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+        <a href="https://www.linkedin.com/in/carlos-moreno94/" target="_blank">carlos-moreno94</a>
+      </div>
 
-<footer>&copy; 2025 Carlos Moreno</footer>
+      <div class="contact-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Calendar" />
+        <a href="https://meet.google.com" target="_blank">Meet Me</a>
+      </div>
 
-<script>
-  const toggleLang = (lang) => {
-    document.querySelectorAll("section").forEach(s => s.style.display = "none");
-    document.querySelectorAll(`#contact${lang}, #work${lang}, #edu${lang}, #skills${lang}, #projects${lang}`).forEach(s => s.style.display = "block");
-    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-    document.getElementById("btn" + lang).classList.add("active");
-  };
-  document.getElementById("btnEN").onclick = () => toggleLang("EN");
-  document.getElementById("btnES").onclick = () => toggleLang("ES");
 
-  // Duplicate EN content to ES as placeholder (you'll edit manually)
-  const enIds = ["contact", "work", "edu", "skills", "projects"];
-  enIds.forEach(id => {
-    const en = document.getElementById(id + "EN");
-    const clone = en.cloneNode(true);
-    clone.id = id + "ES";
-    clone.style.display = "none";
-    clone.querySelector("h2").innerText = clone.querySelector("h2").innerText; // placeholder
-    document.body.insertBefore(clone, document.querySelector("footer"));
-  });
-</script>
+    </div>
+  </section>
+
+  <section id="workEN">
+    <h2>Work Experience</h2>
+
+    <div class="card">
+      <img src="https://www.pta.es/wp-content/uploads/2020/04/logotipo_indra.jpg" alt="Indra" />
+      <div>
+        <strong>Indra Sistemas</strong><br />
+        <em>Category Buyer</em><br />
+        <small>Jan 2025 – now</small>
+        <p>Managed strategic sourcing for IT services, negotiated supplier contracts, and implemented procurement automation tools.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://graffica.ams3.digitaloceanspaces.com/2024/10/moeve-logo.png" alt="Moeve" />
+      <div>
+        <strong>Moeve</strong><br />
+        <em>Category Manager</em><br />
+        <small>May 2023 – Nov 2024</small>
+        <p>Supported tender processes, supplier evaluation, and ERP integration. Handled indirect procurement and reporting.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://media.licdn.com/dms/image/v2/C4D0BAQE-s5NY3xNFkQ/company-logo_200_200/company-logo_200_200/0/1631327504696?e=2147483647&v=beta&t=nGwyAYIu8WbfM8VshAd5T8PeERTLbnGbw6mGDxmkOkg" alt="Plafesa" />
+      <div>
+        <strong>Plafesa</strong><br />
+        <em>Procurement & Supply Chain Technician</em><br />
+        <small>Oct 2022 – May 2023</small>
+        <p>Advised SMEs on digital procurement tools and developed automated Excel dashboards for spend visibility.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://1000logos.net/wp-content/uploads/2021/11/Fiverr-Logo.png" alt="Fiverr" />
+      <div>
+        <strong>Fiverr</strong><br />
+        <em>Freelance Translator EN-DE-NL to ES</em><br />
+        <small>2018 – 2020</small>
+        <p>Early experience in finance and logistics across several companies during and post academic formation.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="eduEN">
+    <h2>Education & Certifications</h2>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr6Eq1lVfoPF9wtF1NlQrtyeBf8Vnq84WtKw&s" alt="UMPI" />
+      <div>
+        <strong>BA in Business Administration (Supply Chain)</strong><br />
+        University of Maine at Presque Isle (USA)<br />
+        <small>Expected: 2026</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.institutolecturafacil.org/wp-content/uploads/2018/07/Logo_Ministerio_de_empleo-800x450.jpg" alt="Cert.Prof" />
+      <div>
+        <strong>International Trade and Financial Management</strong><br />
+        EQF Level 5 / US Associate Degree / UK HND Level 4<br />
+        <small>Completed: 2022</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://e7.pngegg.com/pngimages/234/349/png-clipart-university-of-seville-master-s-degree-student-higher-education-de-gea-thumbnail.png" alt="Universidad de Sevilla" />
+      <div>
+        <strong>German Studies</strong><br />
+        University of Seville (Spain)<br />
+        <small>Incomplete: 2015–2019</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://cscmp.org/images/Website/Develop/Publications/talent-development.png?version=7077AAA2" alt="NASPO" />
+      <div>
+        <strong>CSCMP Supply Chain Procurement Certificate</strong><br />
+        CSCMP<br />
+        <small>Completed: 2024</small>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="skillsEN">
+    <h2>Hard Skills</h2>
+    <div class="skills">
+      <span>SAP</span>
+      <span>Odoo</span>
+      <span>Ariba</span>
+      <span>Achilles</span>
+      <span>VBA</span>
+      <span>Excel</span>
+      <span>Python</span>
+      <span>Power BI</span>
+      <span>SQL</span>
+      <span>Notion</span>
+      <span>Zapier</span>
+      <span>GitHub</span>
+      <span>HTML/CSS</span>
+    </div>
+  </section>
+
+  <section id="skillsEN">
+    <h2>Languages & soft skills</h2>
+    <div class="skills">
+      <span>English (EN) - C2 Level</span>
+      <span>Spanish (ES) - Native</span>
+      <span>Dutch (NL) - B1 Level</span>
+      <span>German (DE) - B2 Level</span>
+      <span>Strategic & Analytic Thinking</span>
+      <span>Continuous Improvement Mindset</span>
+ 
+    </div>
+  </section>
+
+  <section id="projectsEN">
+    <h2>Projects</h2>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Website" />
+      <div>
+        <strong>Personal Website</strong><br />
+        Designed and deployed personal CV using GitHub and HTML/CSS. Domain hosted at carlosmoreno.eu
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3103/3103446.png" alt="RFP Code" />
+      <div>
+        <strong>RFP Code Generator</strong><br />
+        Python-based script to automatically generate RFP codes based on date and format standards.
+      </div>
+    </div>
+
+  </section>
+
+  <footer>&copy; 2025 Carlos Moreno</footer>
+</div>
 
 </body>
 </html>
