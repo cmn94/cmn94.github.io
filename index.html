@@ -1,59 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Carlos Moreno - Procurement & Strategy</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: #fff;
-    color: #222;
-    margin: 0; padding: 2rem;
-  }
-  header {
-    border-bottom: 2px solid #6589bf;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-  }
-  h1 {
-    color: #6589bf;
-    margin: 0;
-  }
-  nav {
-    margin-top: 0.5rem;
-  }
-  nav button {
-    background: none;
-    border: 2px solid #6589bf;
-    color: #6589bf;
-    padding: 0.3rem 0.8rem;
-    margin-right: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  nav button.active {
-    background: #6589bf;
-    color: white;
-  }
-  section {
-    max-width: 600px;
-  }
-  a {
-    color: #6589bf;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  footer {
-    margin-top: 4rem;
-    font-size: 0.9rem;
-    color: #555;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carlos Moreno - CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-color: #6589bf;
+      --font: 'Barlow', sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      margin: 0;
+      padding: 2rem;
+      background-color: #fff;
+      color: #333;
+    }
+    header, nav, section, footer {
+      max-width: 960px;
+      margin: auto;
+    }
+    header h1 {
+      color: var(--main-color);
+    }
+    nav {
+      margin: 1rem 0;
+    }
+    nav button {
+      background: none;
+      border: 2px solid var(--main-color);
+      padding: 0.5rem 1rem;
+      margin-right: 1rem;
+      font-weight: bold;
+      color: var(--main-color);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav button.active {
+      background-color: var(--main-color);
+      color: white;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    .box-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .box {
+      flex: 1 1 calc(50% - 1rem);
+      border: 2px solid var(--main-color);
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
+    }
+    .job-card, .project-card {
+      display: flex;
+      align-items: flex-start;
+      border-left: 5px solid var(--main-color);
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+    .job-card img {
+      height: 40px;
+    }
+    .skills span {
+      display: inline-block;
+      background-color: var(--main-color);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      margin: 0.2rem;
+      font-size: 0.85rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -65,86 +96,74 @@
   </nav>
 </header>
 
-<section>
-  <article id="contentEN">
-    <p>Hello! Welcome to my website. I’m Carlos Moreno, specialized in Procurement & Supply Chain</p>
-    <ul>
-      <li><a href="#" target="_blank">📄 CV (English)</a></li>
-      <li><a href="https://www.linkedin.com/in/carlos-moreno94/" target="_blank">💼 LinkedIn</a></li>
-      <li><a href="mailto:carlos@cyberservices.com">✉️ carlos@cyberservices.com</a></li>
-      <li><a href="tel:+1442">📞 +1 (442) CARLOSM</a></li>
-    </ul>
-  </article>
-
-  <article id="contentES" style="display:none;">
-    <p>¡Hola! Bienvenido a mi web. Soy Carlos Moreno, especializado en Compras y Supply Chain.</p>
-    <ul>
-      <li><a href="#" target="_blank">📄 CV (Español)</a></li>
-      <li><a href="#" target="_blank">💼 LinkedIn</a></li>
-      <li><a href="mailto:carlos@cyberservices.com">✉️ info@nombreapellido.eu</a></li>
-      <li><a href="tel:+1442">📞 +1 442 CARLOSM</li></a>
-    </ul>
-  </article>
+<section id="contactEN">
+  <h2>Contact</h2>
+  <ul>
+    <li>Email: <a href="mailto:info@nombreapellido.eu">info@nombreapellido.eu</a></li>
+    <li>Phone: +1 442 CARLOSM</li>
+    <li><a href="#" target="_blank">LinkedIn</a></li>
+    <li><a href="#" target="_blank">CV PDF</a></li>
+    <li><a href="https://meet.google.com" target="_blank">📅 Meet Me</a></li>
+  </ul>
 </section>
 
-<h2 style="color:#6589bf;">Work experience</h2>
-
-<div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px;">
-
-  <!-- INDRA -->
-  <div style="display: flex; align-items: center; gap: 1rem; border: 1px solid #ddd; border-left: 5px solid #6589bf; padding: 1rem; border-radius: 8px;">
-    <img src="https://i.ytimg.com/vi/OG_kPQmVNLw/maxresdefault.jpg" alt="Indra" style="height: 40px;">
-    <div>
-      <strong>Indra Sistemas</strong><br>
-      <span style="font-size: 0.9rem;">Category Buyer | Jan 2025 – Now</span><br>
-      <span style="font-size: 0.9rem; color: #444;">Gestión de compras tecnológicas, negociación y soporte a IT.</span>
-    </div>
+<section id="workEN">
+  <h2>Work Experience</h2>
+  <div class="job-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Logo_Cepsa.svg" alt="Cepsa">
+    <div><strong>Cepsa</strong><br>IT Procurement Specialist<br><small>Sep 2023 – Jan 2025</small></div>
   </div>
-
-  <!-- MOEVE -->
-  <div style="display: flex; align-items: center; gap: 1rem; border: 1px solid #ddd; border-left: 5px solid #6589bf; padding: 1rem; border-radius: 8px;">
-    <img src="https://graffica.ams3.digitaloceanspaces.com/2024/10/moeve-logo.png" alt="Moeve" style="height: 40px;">
-    <div>
-      <strong>Indra</strong><br>
-      <span style="font-size: 0.9rem;">Category Manager | May 2023 – Nov 2024</span><br>
-      <span style="font-size: 0.9rem; color: #444;">Apoyo operativo, seguimiento de pedidos y control administrativo.</span>
-    </div>
+  <div class="job-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Indra_logo.svg" alt="Indra">
+    <div><strong>Indra</strong><br>Procurement Analyst<br><small>Apr 2021 – Aug 2023</small></div>
   </div>
+</section>
 
-  <!-- PLAFESA -->
-  <div style="display: flex; align-items: center; gap: 1rem; border: 1px solid #ddd; border-left: 5px solid #6589bf; padding: 1rem; border-radius: 8px;">
-    <img src="https://img.icons8.com/ios-filled/50/6589bf/briefcase.png" alt="Otros" style="height: 40px;">
-    <div>
-      <strong>Freelance & Formación</strong><br>
-      <span style="font-size: 0.9rem;">2025 – Presente</span><br>
-      <span style="font-size: 0.9rem; color: #444;">Formación en Supply Chain, IT y finanzas. Proyectos personales.</span>
-    </div>
+<section id="eduEN">
+  <h2>Education & Certifications</h2>
+  <div class="box-container">
+    <div class="box"><strong>BABA</strong><br>University of Maine at Presque Isle</div>
+    <div class="box"><strong>FP</strong><br>Comercio Internacional</div>
+    <div class="box"><strong>German Philology</strong><br>UCM (incomplete)</div>
+    <div class="box"><strong>NASPO</strong><br>Foundations of Procurement</div>
   </div>
+</section>
 
-</div>
+<section id="skillsEN">
+  <h2>IT Skills</h2>
+  <div class="skills">
+    <span>Python</span><span>VBA</span><span>SAP</span><span>Oracle</span><span>Excel</span>
+    <span>Power BI</span><span>SQL</span><span>Notion</span><span>Zapier</span><span>GitHub</span><span>ChatGPT</span>
+  </div>
+</section>
 
-<footer>
-  &copy; 2025 Carlos Moreno
-</footer>
+<section id="projectsEN">
+  <h2>Projects</h2>
+  <div class="project-card"><strong>Personal Website</strong><br>CV site with custom domain & GitHub Pages</div>
+  <div class="project-card"><strong>RFP Code Generator</strong><br>Automated code generation for public procurement</div>
+</section>
+
+<footer>&copy; 2025 Carlos Moreno</footer>
 
 <script>
-  const btnEN = document.getElementById('btnEN');
-  const btnES = document.getElementById('btnES');
-  const contentEN = document.getElementById('contentEN');
-  const contentES = document.getElementById('contentES');
+  const toggleLang = (lang) => {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.querySelectorAll(`#contact${lang}, #work${lang}, #edu${lang}, #skills${lang}, #projects${lang}`).forEach(s => s.style.display = "block");
+    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+    document.getElementById("btn" + lang).classList.add("active");
+  };
+  document.getElementById("btnEN").onclick = () => toggleLang("EN");
+  document.getElementById("btnES").onclick = () => toggleLang("ES");
 
-  btnEN.addEventListener('click', () => {
-    contentEN.style.display = 'block';
-    contentES.style.display = 'none';
-    btnEN.classList.add('active');
-    btnES.classList.remove('active');
-  });
-
-  btnES.addEventListener('click', () => {
-    contentEN.style.display = 'none';
-    contentES.style.display = 'block';
-    btnEN.classList.remove('active');
-    btnES.classList.add('active');
+  // Duplicate EN content to ES as placeholder (you'll edit manually)
+  const enIds = ["contact", "work", "edu", "skills", "projects"];
+  enIds.forEach(id => {
+    const en = document.getElementById(id + "EN");
+    const clone = en.cloneNode(true);
+    clone.id = id + "ES";
+    clone.style.display = "none";
+    clone.querySelector("h2").innerText = clone.querySelector("h2").innerText; // placeholder
+    document.body.insertBefore(clone, document.querySelector("footer"));
   });
 </script>
 
