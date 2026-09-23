@@ -3,131 +3,879 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carlos Moreno - Procurement, Supply Chain & Tech</title>
-  <meta name="description" content="Carlos Moreno. Experience in Procurement, Supply Chain, Tech and much more...">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/10453/10453141.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet" />
+  <title>Carlos Moreno — Procurement, Supply Chain & Tech</title>
+  <meta name="description" content="Carlos Moreno. Strategic Procurement, Purchasing, Supply chain management" />
+  
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:;" />
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('cm-theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
   <style>
     :root {
-      --main-color: #6589bf;
-      --font: 'Barlow', sans-serif;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --surface-elevated: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --chip-bg: #f1f5f9;
+      --chip-text: #334155;
+      --code-bg: #0f172a;
+      --code-text: #38bdf8;
+      --accent: #0284c7;
+      --map-water: #f8fafc;
+      --map-land: #e2e8f0;
+      --map-land-border: #cbd5e1;
+      --map-route-dim: #94a3b8;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-    html {
-      scroll-behavior: smooth;
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-elevated: #1f2937;
+      --border: #1f2937;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --chip-bg: #1f2937;
+      --chip-text: #e5e7eb;
+      --code-bg: #030712;
+      --code-text: #7dd3fc;
+      --accent: #38bdf8;
+      --map-water: #0b1120;
+      --map-land: #1e293b;
+      --map-land-border: #334155;
+      --map-route-dim: #475569;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font);
-      margin: 0;
-      padding: 2rem 0;
-      background-color: #fff;
-      color: #333;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 3rem 1.5rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1rem;
+
+    .container { max-width: 840px; margin: 0 auto; }
+
+    .top-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1.5rem;
     }
+
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .theme-toggle-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid var(--main-color);
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
     }
-    header h1 {
-      margin: 0;
-      color: var(--main-color);
-    }
-    header p {
-      margin: 0.3rem 0;
-      font-size: 0.95rem;
-      color: #555;
-    }
+
+    .header-text h1 { font-size: 2.1rem; letter-spacing: -0.03em; font-weight: 700; }
+    .header-text .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-top: 0.35rem; }
+
     .photo-box {
-      width: 100px;
-      height: 100px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid var(--main-color);
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+      background: var(--surface);
     }
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+
+    .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
     nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      backdrop-filter: blur(8px);
+      z-index: 10;
       display: flex;
-      gap: 1.2rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      margin-bottom: 2.75rem;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
     }
+
     nav a {
       text-decoration: none;
-      color: var(--main-color);
-      font-weight: 600;
-      transition: color 0.3s ease;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.15s ease;
+      white-space: nowrap;
     }
-    nav a:hover {
-      color: #3d5a85;
+
+    nav a:hover { color: var(--primary); }
+
+    section { margin-bottom: 3.5rem; }
+
+    h2 {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
     }
-    section {
+
+    .section-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: -0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* BENTO VALUE PROPOSITION */
+    .differentiator-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
       margin-bottom: 2.5rem;
     }
-    .card {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid var(--main-color);
-      border: 1px solid #ccc;
+
+    .diff-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      background: #fafafa;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.05);
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
-    .card img {
-      height: 40px;
+
+    .diff-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.75;
+    }
+
+    .diff-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .diff-label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .diff-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* PROCUREMENT METRICS / KPI PANEL */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .metric-number {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 0.25rem;
+    }
+
+    .metric-detail {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* REDISEÑADO: MAPA VECTORIAL DE FLUJOS LOGÍSTICOS */
+    
+    .corridor-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .corridor-wrapper.expanded {
+      max-width: 1160px;
+      width: 100%;
+      margin-left: calc(-1 * (min(1160px, 96vw) - min(840px, 100%)) / 2);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    .corridor-wrapper.expanded .map-canvas-container {
+      aspect-ratio: 16 / 8.5;
+      min-height: 520px;
+    }
+
+    .expand-btn {
+      margin-left: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+    }
+
+    .expand-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .star-hub {
+      fill: #eab308;
+      stroke: #ca8a04;
+      stroke-width: 1.2;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      cursor: pointer;
+    }
+
+    .star-hub:hover {
+      transform: scale(1.25);
+      filter: drop-shadow(0 0 8px #eab308);
+    }
+
+    .map-hub-label {
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      fill: #d97706;
+      paint-order: stroke;
+      stroke: var(--bg);
+      stroke-width: 2.5px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .map-hub-sublabel {
+      font-family: var(--font);
+      font-size: 9px;
+      font-weight: 500;
+      fill: var(--text-muted);
+      paint-order: stroke;
+      stroke: var(--bg);
+      stroke-width: 2px;
+    }
+
+    .corridor-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .corridor-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.15s ease;
+    }
+
+    .corridor-btn:hover {
+      border-color: var(--primary);
+      color: var(--text);
+    }
+
+    .corridor-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .corridor-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .map-canvas-container {
+      position: relative;
+      background: var(--map-water);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-canvas-container svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-geo-path {
+      fill: var(--map-land);
+      stroke: var(--map-land-border);
+      stroke-width: 1.2;
+      stroke-linejoin: round;
+    }
+
+    .route-line {
+      fill: none;
+      stroke: var(--map-route-dim);
+      stroke-width: 2;
+      stroke-dasharray: 4, 4;
+      opacity: 0.25;
+      transition: all 0.3s ease;
+    }
+
+    .route-line.active {
+      opacity: 1;
+      stroke-width: 3.5;
+      stroke-dasharray: 6, 4;
+      animation: routeFlow 1s linear infinite;
+    }
+
+    .route-line.steel-route.active { stroke: #d97706; }
+    .route-line.epc-route.active { stroke: #059669; }
+    .route-line.defense-route.active { stroke: #4f46e5; }
+
+    @keyframes routeFlow {
+      to { stroke-dashoffset: -20; }
+    }
+
+    .map-node {
+      fill: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .map-node.active-node {
+      fill: var(--primary);
+      filter: drop-shadow(0 0 5px var(--primary));
+    }
+
+    .map-label {
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--text);
+      pointer-events: none;
+    }
+
+    .map-sublabel {
+      font-family: var(--font);
+      font-size: 9px;
+      fill: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .corridor-info-banner {
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .corridor-info-banner strong { color: var(--text); }
+
+    /* EDUCACIÓN DESPLEGABLE (NATIVE DETAILS/SUMMARY) */
+    .subsection-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 1.75rem 0 0.85rem 0;
+    }
+
+    .subsection-title:first-of-type { margin-top: 0; }
+
+    .item-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .item-card {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .item-top {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .item-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
       flex-shrink: 0;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
-    .card div {
-      flex: 1;
+
+    .item-icon img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+    .item-content { flex: 1; }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
     }
-    .contact-item {
+
+    .item-title { font-weight: 600; font-size: 1.05rem; }
+    .item-date { font-size: 0.85rem; color: var(--text-muted); }
+    .item-subtitle { font-size: 0.95rem; color: var(--primary); margin-bottom: 0.35rem; }
+    .item-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Desplegable nativo HTML5 estilizado */
+    details.coursework-details {
+      margin-top: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    details.coursework-details summary {
+      padding: 0.55rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      background: var(--surface);
+      transition: background 0.15s ease;
+    }
+
+    details.coursework-details summary::-webkit-details-marker { display: none; }
+
+    details.coursework-details summary:hover {
+      background: var(--border);
+    }
+
+    details.coursework-details summary .chevron-icon {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.2s ease;
+    }
+
+    details.coursework-details[open] summary .chevron-icon {
+      transform: rotate(180deg);
+    }
+
+    .coursework-body {
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .coursework-body-header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.35rem 1rem;
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    .subjects-grid li {
+      position: relative;
+      padding-left: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .subjects-grid li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.85rem;
+    }
+
+    /* SKILLS ARCHITECTURE */
+    .skills-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skills-cluster-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem;
+    }
+
+    .cluster-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .cluster-header h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .cluster-header svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    
+    .skill-chip {
+      background: var(--bg);
+      color: var(--text);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    .skill-chip.lang-badge {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+
+    .lang-level {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Project Link & Button Styles */
+    .project-link-title {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .project-link-title:hover { color: var(--primary); }
+    .project-link-title svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .project-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .case-study-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .case-study-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .case-study-btn svg {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .demo-toggle-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: transparent;
+      border: 1px solid var(--primary);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .demo-toggle-btn:hover { background: var(--primary); color: #ffffff; }
+
+    .demo-container {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .demo-container.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rfp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .rfp-input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      width: 100%;
+    }
+
+    .code-preview {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: monospace;
+      padding: 0.6rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lang-tabs { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .lang-tab {
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .lang-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .lang-box {
+      font-size: 0.85rem;
+      background: var(--surface);
+      padding: 0.75rem;
+      border-radius: 4px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .contact-btn {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 1.05rem;
-      margin-bottom: 0.75rem;
-    }
-    .contact-item img {
-      width: 20px;
-      height: 20px;
-      object-fit: contain;
-    }
-    .contact-item a {
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
       text-decoration: none;
-      color: var(--main-color);
-      font-weight: 600;
-    }
-    .contact-item a:hover {
-      text-decoration: underline;
-    }
-    .skills span {
-      display: inline-block;
-      background-color: var(--main-color);
-      color: white;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      margin: 0.2rem;
-      font-size: 0.85rem;
-    }
-    footer {
-      text-align: center;
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 3rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .contact-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
+
+    .contact-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 680px) {
+      header { flex-direction: column-reverse; align-items: flex-start; }
+      .item-top { flex-direction: column; }
+      .differentiator-grid { grid-template-columns: 1fr; }
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -136,206 +884,447 @@
 
 <div class="container">
 
+  <!-- Selector Dark / Light Theme -->
+  <div class="top-toolbar">
+    <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span id="theme-text">Mode</span>
+    </button>
+  </div>
+
   <header>
-    <div>
+    <div class="header-text">
       <h1>Carlos Moreno</h1>
-      <p>Procurement · Supply Chain · Logistics</p>
+      <p class="subtitle">Procurement · Strategic Sourcing · Supply Chain · Digital Transformation</p>
     </div>
     <div class="photo-box">
-      <img src="https://media.licdn.com/dms/image/v2/D4D03AQESrbCHzSbmog/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1692977079537?e=1762992000&v=beta&t=oiysa2F2NIUefJRbIPovUQU8zijsiKwT9nOymmld8qg" alt="Carlos Moreno" />
+      <img src="https://media.licdn.com/dms/image/v2/D4E03AQFAiHy7c87GjA/profile-displayphoto-scale_400_400/B4EaDO1.D.IEAg-/0/1790176654455?e=1792022400&v=beta&t=sQEy_vSMIQ6v8DsC6OqzCd9n87WJhR7Vz9LoUy4kUsQ" alt="Carlos Moreno" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' fill=\'%23cbd5e1\'><text x=\'50%\' y=\'50%\' font-size=\'32\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%2364748b\'>CM</text></svg>'" />
     </div>
   </header>
 
   <nav>
-    <a href="#contactEN">Contact</a>
-    <a href="#workEN">Work</a>
-    <a href="#eduEN">Education</a>
-    <a href="#skillsEN">Skills</a>
-    <a href="#projectsEN">Projects</a>
+    <a href="#overview">Professional Profile</a>
+    <a href="#supply-chain">Volume & Supply Chain Map</a>
+    <a href="#work">Work Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-<section id="contactEN">
-  <h2>Contact</h2>
+  <!-- DIFERENCIADOR: MATRIZ DE IMPACTO -->
+  <section id="overview">
+    <h2>Professional Profile</h2>
+    <div class="differentiator-grid">
+      <div class="diff-card">
+        <div>
+          <div class="diff-value">Strategic Procurement</div>
+          <div class="diff-label">Skilled at supply management</div>
+        </div>
+        <p class="diff-sub">Managing sourcing, supplier relationships, contract management and procurement operations across complex industrial environments.</p>
+      </div>
 
-  <div class="card">
+      <div class="diff-card">
+        <div>
+          <div class="diff-value">Procurement Digitalisation</div>
+          <div class="diff-label">Self-made and tailored IT solutions</div>
+        </div>
+        <p class="diff-sub">Improving procurement through automation, data analysis, standardisation and practical digital tools built around real business needs.</p>
+      </div>
 
-    <div class="contact-item">
-      <img src="https://cdn-icons-png.flaticon.com/128/18154/18154191.png" alt="Email" />
-      <span>info@carlosmoreno.eu</span>
+      <div class="diff-card">
+        <div>
+          <div class="diff-value">International & Mutilingual Profile</div>
+          <div class="diff-label">EN ES DE NL</div>
+        </div>
+        <p class="diff-sub">Working along international suppliers from more than 20 countries, supported by academic knowledgement in English, Spanish, German and Dutch.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="contact-item">
-      <img src="https://cdn-icons-png.flaticon.com/128/4938/4938071.png" alt="US Phone" />
-      <span>+1 (442) CARLOSM</span>
-    </div>
-
-    <div class="contact-item">
-      <img src="https://cdn-icons-png.flaticon.com/128/3536/3536505.png" alt="LinkedIn" />
-      <a href="https://www.linkedin.com/in/carlos-moreno94/" target="_blank" rel="noopener noreferrer">
-        carlos-moreno94
-      </a>
-    </div>
-
-    <div class="contact-item">
-      <img src="https://cdn-icons-png.flaticon.com/128/5968/5968552.png" alt="G Meet" />
-      <a href="https://calendar.app.google/SJj3RBvUTdkhRg5V6" target="_blank" rel="noopener noreferrer">
-        Meet Me
-      </a>
-    </div>
-
-  </div>
+ 
 </section>
 
-  <section id="workEN">
+  <!-- SECCION LOGISTICA -->
+  <section id="supply-chain">
+    <h2>Procurement Volume & Supplier chain routes</h2>
+    <p class="section-intro">Supply chain footprint map based on 165 suppliers across 21 countries</p>
+
+    <!-- CIFRAS BRUTAS DE COMPRAS -->
+    <div class="metrics-bar">
+      <div class="metric-box">
+        <div class="metric-number">€35M+</div>
+        <div class="metric-title">Spend Managed</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-number">8,500+</div>
+        <div class="metric-title">PO Lines Handled</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-number">165</div>
+        <div class="metric-title">Suppliers & 2-tier Vendors</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-number">21</div>
+        <div class="metric-title">Sourcing Countries</div>
+      </div>
+    </div>
+<!-- Interactive map to be added here below -->
+
+
+
+
+
+  <section id="work">
     <h2>Work Experience</h2>
+    <div class="item-list">
 
-    <div class="card">
-      <img src="https://download.logo.wine/logo/Indra_Sistemas/Indra_Sistemas-Logo.wine.png" alt="Indra" />
-      <div>
-        <strong>Indra Sistemas</strong><br />
-        <em>Category Buyer</em><br />
-        <small>Jan 2025 – now</small>
-        <p>Strategic procurement for Transport & Defense projects.Category: Assemblies & Structures</p>
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">Indra Sistemas</span>
+              <span class="item-date">Dec 2024 – Present</span>
+            </div>
+            <div class="item-subtitle">Category Buyer</div>
+            <p class="item-desc">End-to-end procurement within the mechanical and assemblies category, covering supplier management.</p>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://agicg.es/wp-content/uploads/moeve-logo.png" alt="Moeve" />
-      <div>
-        <strong>Moeve</strong><br />
-        <em>Category Manager</em><br />
-        <small>May 2023 – Nov 2024</small>
-        <p>Strategic procurement of Industrial Goods for EPC engineering projects. Categories: piping, dynamic & static equipment, electrical & instrumentation (E&I)</p>
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">Moeve</span>
+              <span class="item-date">May 2023 – Nov 2024</span>
+            </div>
+            <div class="item-subtitle">Category Manager</div>
+            <p class="item-desc">Strategic procurement of EPC goods for engineering projects, ensuring cost efficiency, supply continuity, and supply chain optimization.</p>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://media.licdn.com/dms/image/v2/C4D0BAQE-s5NY3xNFkQ/company-logo_200_200/company-logo_200_200/0/1631327504696?e=2147483647&v=beta&t=nGwyAYIu8WbfM8VshAd5T8PeERTLbnGbw6mGDxmkOkg" alt="Plafesa" />
-      <div>
-        <strong>Plafesa</strong><br />
-        <em>Procurement & Supply Chain Technician</em><br />
-        <small>Oct 2022 – May 2023</small>
-        <p>Steel procurement and import operations, managing the supply of raw materials (steel coils) from international suppliers to Spain and Portugal.</p>
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">Plafesa</span>
+              <span class="item-date">Oct 2022 – May 2023</span>
+            </div>
+            <div class="item-subtitle">Junior Purchasing & Supply Chain Technician</div>
+            <p class="item-desc">Steel purchase and import operations, managing the supply of raw materials from international suppliers to Spain and Portugal.</p>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://1000logos.net/wp-content/uploads/2021/11/Fiverr-Logo.png" alt="Fiverr" />
-      <div>
-        <strong>Fiverr</strong><br />
-        <em>Freelance Translator EN-DE-NL to ES</em><br />
-        <small>Sep 2019 – 2024</small>
-        <p>Translation from English, Dutch, and German into Spanish, including websites, product descriptions, and digital content.</p>
-      </div>
-    </div>
 
-  </section>
-
-  <section id="eduEN">
-    <h2>Education & Certifications</h2>
-
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr6Eq1lVfoPF9wtF1NlQrtyeBf8Vnq84WtKw&s" alt="UMPI" />
-      <div>
-        <strong>BA in Business Administration (Supply Chain)</strong><br />
-        University of Maine at Presque Isle (USA)<br />
-        <small>Expected: 2026</small>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxqRZFwqGpyiC1AhKA2ttDVWdbRgeAOkp6Sg&s" alt="Cert.Prof" />
-      <div>
-        <strong>International Trade and Financial Management</strong><br />
-        EQF Level 5 / US Associate Degree / UK HND Level 4<br />
-        <small>Completed: 2022</small>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://e7.pngegg.com/pngimages/234/349/png-clipart-university-of-seville-master-s-degree-student-higher-education-de-gea-thumbnail.png" alt="Universidad de Sevilla" />
-      <div>
-        <strong>German Studies</strong><br />
-        University of Seville (Spain)<br />
-        <small>Incomplete: 2015–2019</small>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://cscmp.org/images/Website/Develop/Publications/talent-development.png?version=7077AAA2" alt="NASPO" />
-      <div>
-        <strong>CSCMP Supply Chain Procurement Certificate</strong><br />
-        CSCMP<br />
-        <small>Completed: 2024</small>
-      </div>
-    </div>
-
-  </section>
-
-  <section id="skillsEN">
-    <h2>Hard Skills</h2>
-    <div class="skills">
-      <span>SAP</span>
-      <span>Odoo</span>
-      <span>Ariba</span>
-      <span>Achilles</span>
-      <span>VBA</span>
-      <span>Excel</span>
-      <span>Python</span>
-      <span>Power BI</span>
-      <span>SQL</span>
-      <span>Notion</span>
-      <span>Zapier</span>
-      <span>GitHub</span>
-      <span>HTML/CSS</span>
     </div>
   </section>
 
-  <section id="skillsEN">
-    <h2>Languages & soft skills</h2>
-    <div class="skills">
-      <span>English (EN) - C2 Level</span>
-      <span>Spanish (ES) - Native</span>
-      <span>Dutch (NL) - B1 Level</span>
-      <span>German (DE) - B2 Level</span>
-      <span>Strategic & Analytic Thinking</span>
-      <span>Continuous Improvement Mindset</span>
- 
+  <!-- EDUCACIÓN CON DESPLEGABLES FUNCIONALES -->
+  <section id="education">
+    <h2>Education & Credentials</h2>
+
+    <div class="subsection-title">Academic Degrees & Formal Education</div>
+    <div class="item-list" style="margin-bottom: 2rem;">
+
+      <!-- EDUCACIÓN 1: UMPI -->
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">BA in Business Administration (Supply Chain Major)</span>
+              <span class="item-date">Expected 2026</span>
+            </div>
+            <div class="item-subtitle">University of Maine at Presque Isle (US)</div>
+            <p class="item-desc">Degree program focused on business management, supply chain management, logistics, operations, and organizational management.</p>
+
+            <details class="coursework-details">
+              <summary>
+                <span>Courses & Completed Coursework (40 courses in total)</span>
+                <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="coursework-body">
+                <div class="coursework-body-header">
+                  <span>Courses</span>
+                  <span>Accredited by the New England Commission of Higher Education (NECHE)</span>
+                </div>
+                <ul class="subjects-grid">
+                  <li>Financial Accounting</li>
+                  <li>Macroeconomics</li>
+                  <li>Principles of Finance</li>
+                  <li>Personal Finance</li>
+                  <li>Managerial Accounting</li>
+                  <li>Introduction to Business</li>
+                  <li>Introduction to Information Technology</li>
+                  <li>Principles of Management</li>
+                  <li>Conflict Resolution</li>
+                  <li>Microeconomics</li>
+                  <li>Environmental Science</li>
+                  <li>Visual Communications</li>
+                  <li>Introduction to Statistics</li>
+                  <li>Art History II</li>
+                  <li>Human Biology</li>
+                  <li>College Readiness</li>
+                  <li>U.S. History I</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCACIÓN 2: HND -->
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">Advanced Diploma in International Trade & Financial Management</span>
+              <span class="item-date">Completed 2022</span>
+            </div>
+            <div class="item-subtitle">EQF Level 4 / US Associate Degree Equivalent</div>
+            <p class="item-desc">Official EU recognized vocational training qualification focused in import/export, customs operations, international financing and payments.</p>
+
+            <details class="coursework-details">
+              <summary>
+                <span>Curriculum & Official Modules (10 Modules)</span>
+                <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="coursework-body">
+                <div class="coursework-body-header">
+                  <span>Vocational Training Content</span>
+                  <span>Includes internship of 40 hours</span>
+                </div>
+                <ul class="subjects-grid">
+                  <li>Information Management and Operational Administration of International Sales and Purchasing (80 hours)</li>
+                  <li>Customs Management in International Trade (90 hours)</li>
+                  <li>Taxation of International Trade Transactions (30 hours)</li>
+                  <li>Cargo Insurance in International Trade (30 hours)</li>
+                  <li>Management of International Financing Operations (90 hours)</li>
+                  <li>Risk Analysis and Hedging Instruments in International Trade Operations (60 hours)</li>
+                  <li>International Tendering (30 hours)</li>
+                  <li>Spoken and Written English for International Trade (90 hours)</li>
+                  <li>Documentation in English for International Trade (30 hours)</li>
+                  <li>Professional Internship at GUCOEXT SL (40 hours)</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCACIÓN 3: UNIVERSIDAD DE SEVILLA -->
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">Undergratuate in German Studies</span>
+              <span class="item-date">2015 – 2019</span>
+            </div>
+            <div class="item-subtitle">University of Seville (Spain)</div>
+            <p class="item-desc">University-level degree in German, Dutch, linguistics, literature, communication and translation</p>
+
+            <details class="coursework-details">
+              <summary>
+                <span>Completed Coursework (31/40 Subjects Total)</span>
+                <svg class="chevron-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="coursework-body">
+                <div class="coursework-body-header">
+                  <span>Official University Coursework</span>
+                  <span>Faculty of Philology</span>
+                </div>
+                <ul class="subjects-grid">
+                  <li>German Language A1</li>
+                  <li>German Language A2</li>
+                  <li>German Language B1</li>
+                  <li>German Language B1.2</li>
+                  <li>German Language B2</li>
+                  <li>Modern Language I (Dutch)</li>
+                  <li>Modern Language II (Dutch) B1</li>
+                  <li>Spanish Language</li>
+                  <li>Linguistics</li>
+                  <li>Classical Language (Latin)</li>
+                  <li>Fundamentals of German Grammar</li>
+                  <li>German Morphosyntax</li>
+                  <li>Practical German Phonetics</li>
+                  <li>History of the German Language</li>
+                  <li>History of German-Language Literature I</li>
+                  <li>History of German-Language Literature II</li>
+                  <li>History and Culture of the German-Speaking World</li>
+                  <li>Business and Tourism German</li>
+                  <li>German for Media and Communication</li>
+                  <li>Translation of German Texts</li>
+                  <li>Literary Translation and Publishing</li>
+                  <li>Information and Communication Technologies Applied to German Language and Literature</li>
+                  <li>German Literary Criticism and Theory</li>
+                  <li>Oral and Written Expression I</li>
+                  <li>Artistic Expressions in the German-Speaking World</li>
+                  <li>Themes and Motifs in German Literature</li>
+                  <li>Academic Credits Awarded for Recognition of English Language Proficiency at B2 Level</li>
+                  <li>Other Germanic Literatures (Yiddish)</li>
+                  <li>German Cinema and Literature</li>
+                  <li>Teaching Methodology for German Language and Literature</li>
+                  <li>German Texts for Intercultural Communication</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CERTIFICACIONES PROFESIONALES -->
+    <div class="subsection-title">Certifications</div>
+    <div class="item-list">
+
+      <div class="item-card">
+        <div class="item-top">
+          <div class="item-content">
+            <div class="item-header">
+              <span class="item-title">CSCMP Supply Chain Procurement Certificate</span>
+              <span class="item-date">2024</span>
+            </div>
+            <div class="item-subtitle">Council of Supply Chain Management Professionals (CSCMP)</div>
+            <p class="item-desc">Certification covering strategic sourcing, supplier risk management, contract administration, and category management methodologies.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section id="projectsEN">
-    <h2>Projects</h2>
+  <!-- COMPETENCIAS CLUSTERIZADAS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-cluster">
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Website" />
-      <div>
-        <strong>Personal Website</strong><br />
-        Designed and deployed personal CV using GitHub and HTML/CSS. Domain hosted at carlosmoreno.eu
+      <!-- Cluster 1: Hard Skills / Procurement only -->
+      <div class="skills-cluster-box">
+        <div class="cluster-header">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <h3>Procurement & Sourcing</h3>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-chip">SAP (MM / Ariba)</span>
+          <span class="skill-chip">Achilles / JAGGAER</span>
+          <span class="skill-chip">Strategic Sourcing</span>
+          <span class="skill-chip">Supplier Management</span>
+          <span class="skill-chip">Risk Management</span>
+          <span class="skill-chip">Procurement KPIs</span>
+          <span class="skill-chip">Contract management</span>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/128/17718/17718127.png" alt="RFP Code" />
-      <div>
-        <strong>RFP Code Generator</strong><br />
-        Python-based script to automatically generate RFP codes based on date and format standards.
+      <!-- Cluster 2: Tech & IT Stack only -->
+      <div class="skills-cluster-box">
+        <div class="cluster-header">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <h3>IT, Data & Automation Stack</h3>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">Advanced Excel & VBA</span>
+          <span class="skill-chip">Git / GitHub Version Control</span>
+          <span class="skill-chip">HTML5 / Modern CSS</span>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/128/5024/5024351.png" alt="RFP Code" />
-      <div>
-        <strong>Website translation for a leading European plastic surgery clinic</strong><br />
-        Full localization of their public-facing website from Dutch into Spanish, including medical terminology, UX copywriting, and SEO content.
-The translation was integrated using the Umbraco CMS, ensuring content alignment with design and user flow. <i>Client confidential.</i>
+      <!-- Cluster 3: Languages & Soft Skills solo 3 soft skills -->
+      <div class="skills-cluster-box">
+        <div class="cluster-header">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h3>Languages & Soft-skills</h3>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-chip lang-badge">English <span class="lang-level">C2 Proficiency</span></span>
+          <span class="skill-chip lang-badge">Spanish <span class="lang-level">Native</span></span>
+          <span class="skill-chip lang-badge">German <span class="lang-level">B2 Working Proficiency</span></span>
+          <span class="skill-chip lang-badge">Dutch <span class="lang-level">B1 Working Knowledge</span></span>
+          <span class="skill-chip">Problem Solving</span>
+          <span class="skill-chip">Continuous Improvement (Kaizen)</span>
+        </div>
       </div>
-    </div>
 
+    </div>
   </section>
 
-  <footer>&copy; 2025 Carlos Moreno <p>This is a personal, non-commercial website. No tracking technologies or cookies are used.</p></footer>
+  <section id="contact">
+    <h2>Direct Contact</h2>
+    <div class="contact-grid">
+      <button class="contact-btn" id="email-btn" onclick="revealContact('email')" title="Click to show/copy">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span id="email-label">Show E-mail</span>
+      </button>
+
+      <button class="contact-btn" id="phone-btn" onclick="revealContact('phone')" title="Click to show/copy">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span id="phone-label">Show Phone</span>
+      </button>
+
+      <a class="contact-btn" href="https://www.linkedin.com/in/carlos-moreno94/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <span>LinkedIn</span>
+      </a>
+
+      <a class="contact-btn" href="" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Schedule Meet</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Carlos Moreno. Built with zero tracking cookies or third-party surveillance scripts.</p>
+  </footer>
+
 </div>
+
+<script>
+  function updateThemeUI(theme) {
+    const textEl = document.getElementById('theme-text');
+    if (textEl) {
+      textEl.innerText = theme === 'dark' ? 'Dark' : 'Light';
+    }
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('cm-theme', next);
+    updateThemeUI(next);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const activeTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeUI(activeTheme);
+  });
+
+
+  // Contact obfuscation
+  const _c = {
+    u: 'aW5mb0BjYXJsb3Ntb3Jlbm8uZXU=',
+    p: 'KzEgKDQ0MikgQ0FSTE9TTQ=='
+  };
+
+  function revealContact(type) {
+    if (type === 'email') {
+      const decoded = atob(_c.u);
+      navigator.clipboard.writeText(decoded);
+      document.getElementById('email-label').innerText = decoded + ' (Copied)';
+      setTimeout(() => { window.location.href = 'mailto:' + decoded; }, 400);
+    } else if (type === 'phone') {
+      const decoded = atob(_c.p);
+      navigator.clipboard.writeText(decoded);
+      document.getElementById('phone-label').innerText = decoded + ' (Copied)';
+    }
+  }
+
+</script>
 
 </body>
 </html>
